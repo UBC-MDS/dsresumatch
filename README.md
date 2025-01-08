@@ -18,7 +18,7 @@ Interested in contributing? Check out the contributing guidelines. Please note t
 
 ## License
 
-`dsresumatch` was created by Nelli Hovhannisyan, Ashita Diwan, Timotythy Singh,Jia Quan Lim. It is licensed under the terms of the MIT license.
+`dsresumatch` was created by Nelli Hovhannisyan, Ashita Diwan, Timothy Singh,Jia Quan Lim. It is licensed under the terms of the MIT license.
 
 ## Credits
 
