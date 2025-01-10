@@ -18,27 +18,6 @@ def read_pdf(file_path):
     'Work Experience\nSoftware Developer at XYZ Corp.\nEducation\nBachelor of Science in Computer Science\n'
     """
 
-def identify_missing_sections(raw_text):
-    """
-    Identify missing predefined sections in the extracted text.
-
-    Parameters
-    ----------
-    raw_text : str
-        Text extracted from a PDF.
-
-    Returns
-    -------
-    list
-        A list of section headers that are missing in the text.
-
-    Examples
-    --------
-    >>> raw_text = "Work Experience\nSoftware Developer at XYZ Corp.\n"
-    >>> identify_missing_sections(raw_text)
-    ['Education', 'Skills', 'Projects', 'Certifications', 'Awards']
-    """
-
 
 def count_words_in_pdf(file_path):
     """
@@ -64,7 +43,7 @@ def count_words_in_pdf(file_path):
 
 def clean_text(raw_text):
     """
-    Lowercase and remove punctuation, and stop words from a string.
+    Lowercase and remove punctuation, and English stop words from a string.
 
     Parameters
     ----------
