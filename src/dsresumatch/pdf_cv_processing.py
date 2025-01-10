@@ -1,6 +1,6 @@
 def read_pdf(file_path):
     """
-    Load text from a PDF file and return as a string.
+    Extract text content from a PDF file and return it as a single consolidated string.
 
     Parameters
     ----------
@@ -21,9 +21,9 @@ def read_pdf(file_path):
 
 def count_words_in_pdf(file_path):
     """
-    Count words in a PDF file.
+    Count the frequency of words in a PDF file.
 
-    Words are made lowercase and punctuation, stop words in English are removed before counting.
+    This function converts all words to lowercase, removing punctuation, and excluding common English stop words to ensure meaningful word counts. 
 
     Parameters
     ----------
@@ -33,7 +33,7 @@ def count_words_in_pdf(file_path):
     Returns
     -------
     collections.Counter
-        dict-like object where keys are words and values are counts.
+        dictionary-like object with the frequency of each remaining words where keys are words and values are counts.
 
     Examples
     --------
@@ -43,7 +43,7 @@ def count_words_in_pdf(file_path):
 
 def clean_text(raw_text):
     """
-    Lowercase and remove punctuation, and English stop words from a string.
+    Covert raw_text to lowercase, remove punctuation, and filter out common English stop words to retain only meaningful words in the string.
 
     Parameters
     ----------
@@ -58,5 +58,5 @@ def clean_text(raw_text):
     Examples
     --------
     >>> clean_text("Work Experience: Software Developer at XYZ Corp!")
-    'work experience software developer at xyz corp'
+    'work experience software developer xyz corp'
     """
