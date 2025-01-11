@@ -27,7 +27,7 @@
 - [NLTK](https://www.nltk.org/): For advanced natural language processing tasks.
 - [spaCy](https://spacy.io/): For large-scale NLP and text processing.
 
-There are no Python packages that consistently support resume matching, but there are some Python programs, such as [resume-job-matcher](https://github.com/sliday/resume-job-matcher) and [Resume Compatibility](https://github.com/sumitprdrsh/Resume_Compatibility).
+There are no Python packages that consistently support resume matching (e.g., [resume-matcher](https://pypi.org/project/resume-matcher/), which was last updated in February 2024). However, there are some Python programs available, such as [resume-job-matcher](https://github.com/sliday/resume-job-matcher) and [Resume Compatibility](https://github.com/sumitprdrsh/Resume_Compatibility).
 
 If you are looking for general PDF text extraction, libraries like [PyPDF2](https://github.com/py-pdf/pypdf) and [pdfplumber](https://github.com/jsvine/pdfplumber) might suit your needs. However, `dsresumatch` builds on this functionality to provide domain-specific tools tailored to resume evaluation.
 
