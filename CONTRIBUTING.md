@@ -59,6 +59,17 @@ Ready to contribute? Here's how to set up `dsresumatch` for local development.
 
 5. Commit your changes and open a pull request.
 
+## Branch Naming Conventions
+
+To keep the workflow clean and organized, please follow these branch naming conventions when contributing to this project:
+
+	•	docs\: Use this prefix for branches that involve documentation updates or changes.
+        Example: docs\update-readme
+	•	fix\: Use this prefix for branches that fix bugs or issues in the codebase.
+        Example: fix\functionName
+	•	feature\: Use this prefix for branches that add new features, scripts, or major changes to the codebase.
+        Example: feature\add-functionName
+
 ## Pull Request Guidelines
 
 Before you submit a pull request, check that it meets these guidelines:
@@ -66,6 +77,7 @@ Before you submit a pull request, check that it meets these guidelines:
 1. The pull request should include additional tests if appropriate.
 2. If the pull request adds functionality, the docs should be updated.
 3. The pull request should work for all currently supported operating systems and versions of Python.
+4. New code should follow the tidyverse [style guide](http://style.tidyverse.org) or PEP8 [style guide](https://www.python.org/dev/peps/pep-0008/).
 
 ## Code of Conduct
 
