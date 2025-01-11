@@ -12,8 +12,8 @@
   - `count_words_in_pdf(file_path)`: Counts word frequencies in a PDF file.
 
 - **Section Evaluation**
-  - `missing_section(clean_text, add_benchmark_sections)`: Identifies sections missing from the resume compared to benchmark sections.
-  - `extra_section(resume_text, add_benchmark_sections)`: Detects extra sections not included in the benchmark list.
+  - `missing_section(clean_text, add_benchmark_sections=None)`: Identifies sections missing from the resume compared to benchmark sections.
+  - `extra_section(resume_text, add_benchmark_sections=None)`: Detects extra sections not included in the benchmark list.
 
 - **Keyword Analysis**
   - `evaluate_keywords(cleaned_text, keywords=None, use_only_supplied_keywords=False)`: Matches keywords against the resume text and evaluates the coverage.
