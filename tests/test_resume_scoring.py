@@ -78,6 +78,9 @@ benchmark_sections_wrong_type = "Test"
 use_only_supplied_keywords_wrong_type = 11.1
 feedback_wrong_type = []
 
+
+# Create testing functions
+
 def resume_score_test_cleaned_text_only():
     """Testing cleaned_text is a string, no optional variables."""
     expected_result = """
@@ -117,3 +120,13 @@ def resume_score_test_cleaned_text_keywords_only():
     """
     actual_result = resume_score(clean_text_optimal, keywords=keywords_optimal, use_only_supplied_keywords=True)
     assert actual_result == expected_result, "resume_score_test_cleaned_text_keywords_only failed."
+
+def resume_score_test_cleaned_text_benchmark_sections():
+    """Testing cleaned_text is a string, with benchmark_sections provided."""
+    expected_result = """
+    This resume attained a score of 95.
+    Feedback:
+    - Missing Keywords: 'Big Data'
+    """
+    actual_result = resume_score(clean_text_optimal, add_benchmark_sections=benchmark_sections_optimal)
+    assert actual_result == expected_result, "resume_score_test_cleaned_text_benchmark_sections failed."
