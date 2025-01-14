@@ -97,7 +97,8 @@ def resume_score_test_cleaned_text_feedback():
     expected_result = """
     This resume attained a score of 81.3.
     """
-    actual_result = resume_score(clean_text_optimal, feedback=False)
+    actual_result = resume_score(clean_text_optimal, 
+                                 feedback=False)
     assert actual_result == expected_result, "resume_score_test_cleaned_text_feedback failed."
 
 def resume_score_test_cleaned_text_keywords():
@@ -108,7 +109,8 @@ def resume_score_test_cleaned_text_keywords():
     - Missing Keywords: 'Big Data', 'Cloud Computing'
     - Missing Sections: 'Certifications', 'Projects'
     """
-    actual_result = resume_score(clean_text_optimal, keywords=keywords_optimal)
+    actual_result = resume_score(clean_text_optimal, 
+                                 keywords=keywords_optimal)
     assert actual_result == expected_result, "resume_score_test_cleaned_text_keywords failed."
 
 def resume_score_test_cleaned_text_keywords_only():
@@ -118,7 +120,9 @@ def resume_score_test_cleaned_text_keywords_only():
     Feedback:
     - Missing Keywords: 'Big Data'
     """
-    actual_result = resume_score(clean_text_optimal, keywords=keywords_optimal, use_only_supplied_keywords=True)
+    actual_result = resume_score(clean_text_optimal, 
+                                 keywords=keywords_optimal, 
+                                 use_only_supplied_keywords=True)
     assert actual_result == expected_result, "resume_score_test_cleaned_text_keywords_only failed."
 
 def resume_score_test_cleaned_text_benchmark_sections():
@@ -128,5 +132,18 @@ def resume_score_test_cleaned_text_benchmark_sections():
     Feedback:
     - Missing Keywords: 'Big Data'
     """
-    actual_result = resume_score(clean_text_optimal, add_benchmark_sections=benchmark_sections_optimal)
+    actual_result = resume_score(clean_text_optimal, 
+                                 add_benchmark_sections=benchmark_sections_optimal)
     assert actual_result == expected_result, "resume_score_test_cleaned_text_benchmark_sections failed."
+
+def resume_score_test_cleaned_text_all_arguments():
+    """Testing cleaned_text is a string, with all arguments."""
+    expected_result = """
+    This resume attained a score of 81.3.
+    """
+    actual_result = resume_score(clean_text_optimal, 
+                                 feedback=False, 
+                                 keywords=keywords_optimal, 
+                                 use_only_supplied_keywords=True,
+                                 add_benchmark_sections=benchmark_sections_optimal)
+    assert actual_result == expected_result, "resume_score_test_cleaned_text_all_arguments failed."
