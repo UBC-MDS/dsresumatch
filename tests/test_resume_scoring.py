@@ -78,8 +78,8 @@ benchmark_sections_wrong_type = "Test"
 use_only_supplied_keywords_wrong_type = 11.1
 feedback_wrong_type = []
 
-def test_cleaned_text_only():
-    """Testing cleaned_text is a string, no optional variables"""
+def resume_score_test_cleaned_text_only():
+    """Testing cleaned_text is a string, no optional variables."""
     expected_result = """
     This resume attained a score of 81.3.
     Feedback:
@@ -87,5 +87,33 @@ def test_cleaned_text_only():
     - Missing Sections: 'Certifications', 'Projects'
     """
     actual_result = resume_score(clean_text_optimal)
-    assert actual_result == expected_result, "test_clean_text_only failed."
+    assert actual_result == expected_result, "resume_score_test_cleaned_text_only failed."
 
+def resume_score_test_cleaned_text_feedback():
+    """Testing cleaned_text is a string, with feedback = False"""
+    expected_result = """
+    This resume attained a score of 81.3.
+    """
+    actual_result = resume_score(clean_text_optimal, feedback=False)
+    assert actual_result == expected_result, "resume_score_test_cleaned_text_feedback failed."
+
+def resume_score_test_cleaned_text_keywords():
+    """Testing cleaned_text is a string, with keywords provided."""
+    expected_result = """
+    This resume attained a score of 85.3.
+    Feedback:
+    - Missing Keywords: 'Big Data', 'Cloud Computing'
+    - Missing Sections: 'Certifications', 'Projects'
+    """
+    actual_result = resume_score(clean_text_optimal, keywords=keywords_optimal)
+    assert actual_result == expected_result, "resume_score_test_cleaned_text_keywords failed."
+
+def resume_score_test_cleaned_text_keywords_only():
+    """Testing cleaned_text is a string, with keywords provided and use_only_supplied_keywords = True"""
+    expected_result = """
+    This resume attained a score of 95.
+    Feedback:
+    - Missing Keywords: 'Big Data'
+    """
+    actual_result = resume_score(clean_text_optimal, keywords=keywords_optimal, use_only_supplied_keywords=True)
+    assert actual_result == expected_result, "resume_score_test_cleaned_text_keywords_only failed."
