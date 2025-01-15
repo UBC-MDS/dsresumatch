@@ -1,3 +1,5 @@
+import re
+
 def missing_section(clean_text, add_benchmark_sections=None):
     """
     Identifies the sections missing from the resume based on the benchmark sections.
@@ -28,7 +30,29 @@ def missing_section(clean_text, add_benchmark_sections=None):
     missing = missing_section(clean_text)
     # Output: [] or custom logic for None case
     """
+    if add_benchmark_sections is not None and not (isinstance(add_benchmark_sections, list) or isinstance(add_benchmark_sections, str)):
+        raise TypeError("Expected a string, list, or None for additional benchmark sections.")
 
+    # Define hardcoded benchmark sections as a set
+    benchmark_sections = {"Skills", "Education", "Work Experience", "Contact"}
+
+    # Convert the single string to a list if necessary
+    if isinstance(add_benchmark_sections, str):
+        add_benchmark_sections = [add_benchmark_sections]
+
+    # Add additional benchmark sections if provided
+    if add_benchmark_sections:
+        benchmark_sections.update(add_benchmark_sections)
+
+    # Identify sections missing from the resume using regex
+    missing = []
+    for section in benchmark_sections:
+        # Regex pattern to match section names (case-insensitive, handles concatenation)
+        pattern = rf"\b{re.escape(section)}\b"
+        if not re.search(pattern, clean_text, re.IGNORECASE):
+            missing.append(section)
+
+    return missing
 
 def extra_section(resume_text, add_benchmark_sections=None):
     """
