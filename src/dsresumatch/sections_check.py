@@ -8,30 +8,38 @@ def missing_section(clean_text, add_benchmark_sections=None):
     ----------
     clean_text : str
         The text extracted from the resume.
-    add_benchmark_sections : list of str, optional
+    add_benchmark_sections : list of str or str, optional
         A list of additional section names (e.g., "Skills", "Education", 
-        "Work Experience", "Contact"). Defaults to None.
+        "Work Experience", "Contact") or a single section name as a string. 
+        Defaults to None. If a single string is provided, it will be treated as 
+        a list with one element.
 
     Returns:
     -------
     list of str
         A list of section names from the benchmark that are not present in the resume.
-    
+
     Examples:
     --------
-    # Example 1: With custom benchmark sections
+    # Example 1: With additional benchmark sections as a list
     clean_text = "Skills: Python, Machine Learning\nEducation: B.Sc. in CS"
-    add_benchmark_sections = ["Skills", "Education", "Work Experience", "Contact"]
+    add_benchmark_sections = ["Work Experience", "Contact"]
     missing = missing_section(clean_text, add_benchmark_sections)
     # Output: ['Work Experience', 'Contact']
 
-    # Example 2: Without benchmark sections (None)
+    # Example 2: With additional benchmark sections as a single string
+    clean_text = "Skills: Python, Machine Learning\nEducation: B.Sc. in CS"
+    add_benchmark_sections = "Projects"
+    missing = missing_section(clean_text, add_benchmark_sections)
+    # Output: ['Work Experience', 'Contact', 'Projects']
+
+    # Example 3: Without additioinal benchmark sections
     clean_text = "Skills: Python, Machine Learning\nEducation: B.Sc. in CS"
     missing = missing_section(clean_text)
-    # Output: [] or custom logic for None case
+    # Output: ['Work Experience', 'Contact']
     """
     if add_benchmark_sections is not None and not (isinstance(add_benchmark_sections, list) or isinstance(add_benchmark_sections, str)):
-        raise TypeError("Expected a string, list, or None for additional benchmark sections.")
+        raise TypeError(f"Expected a string, list, or None for additional benchmark sections. add_benchmark_sections is a {type(add_benchmark_sections)}")
 
     # Define hardcoded benchmark sections as a set
     benchmark_sections = {"Skills", "Education", "Work Experience", "Contact"}
