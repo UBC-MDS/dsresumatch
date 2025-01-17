@@ -1,11 +1,24 @@
+import json
+from pathlib import Path
+
+# load in baseline keywords
+def load_baseline_keywords():
+    """Load baseline keywords from the JSON file"""
+    data_path = Path(__file__).parent / "data" / "baseline_keywords.json"
+    with open(data_path, "r") as f:
+        keywords_dict = json.load(f)
+    
+    # flatten all categories into a single list
+    return [keyword.lower() for category in keywords_dict.values() for keyword in category]
+
 def evaluate_keywords(cleaned_text, keywords=None, use_only_supplied_keywords=False):
     """
     Evaluate the quality of a resume by comparing its content against a set of predefined 
     or user-supplied keywords.
 
     This function assesses whether the resume contains relevant keywords that match the criteria 
-    for a "good data science resume."
-    Users can provide their own keywords or combine them with a default set of predefined keywords.
+    for a "good data science resume." Users can provide their own keywords or combine them with a 
+    default set of predefined keywords.
 
     Parameters
     ----------
@@ -21,15 +34,16 @@ def evaluate_keywords(cleaned_text, keywords=None, use_only_supplied_keywords=Fa
 
     Returns
     -------
-    dict
-        A dictionary with keys as keywords and values as boolean indicators 
-        (True if the keyword is found, False otherwise).
+    list of str
+        A list of keywords (from either the baseline or provided keywords) that do not appear 
+        in the `cleaned_text`.
 
     Examples
     --------
     >>> evaluate_keywords("software development project management agile methodologies", ["software", "agile", "teamwork"])
-    {'software': True, 'agile': True, 'teamwork': False}
+    ['teamwork']
 
     >>> evaluate_keywords("data analysis machine learning statistical modeling", use_only_supplied_keywords=False)
-    {'data': True, 'analysis': True, 'machine': True, 'learning': True, 'statistical': True, 'modeling': True, 'teamwork': False, 'communication': False}
+    ['teamwork', 'communication']
     """
+    
