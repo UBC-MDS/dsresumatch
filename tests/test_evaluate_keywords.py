@@ -4,6 +4,16 @@ from src.dsresumatch.evaluate_keywords import evaluate_keywords, load_baseline_k
 # load baseline keywords once for all tests
 BASELINE_KEYWORDS = load_baseline_keywords()
 
+def test_baseline_keywords_loaded():
+    """Test that baseline keywords are properly loaded"""
+    
+    keywords = load_baseline_keywords()
+    assert "python" in keywords
+    assert "teamwork" in keywords
+    assert "docker" in keywords
+    assert all(isinstance(keyword, str) for keyword in keywords)
+    assert all(keyword.islower() for keyword in keywords) 
+
 def test_only_supplied_keywords():
     """Test using only supplied keywords when use_only_supplied_keywords is True"""
 
@@ -70,7 +80,7 @@ def test_duplicate_baseline_keyword():
     # 'python' is in baseline keywords
     keywords = ["python", "sql"]
     result = evaluate_keywords(text, keywords, use_only_supplied_keywords=False)
-    
+
     # 'python' should appear only once in results if missing
     assert len([k for k in result if k == "python"]) <= 1
 
@@ -102,12 +112,3 @@ def test_case_sensitivity():
 
     # only SQL should be in results as python and analysis are in text (case-insensitive)
     assert result == ["SQL"]
-
-def test_baseline_keywords_loaded():
-    """Test that baseline keywords are properly loaded"""
-    keywords = load_baseline_keywords()
-    assert "python" in keywords
-    assert "teamwork" in keywords
-    assert "docker" in keywords
-    assert all(isinstance(keyword, str) for keyword in keywords)
-    assert all(keyword.islower() for keyword in keywords) 
