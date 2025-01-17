@@ -1,9 +1,6 @@
 from collections import Counter
 from dsresumatch.pdf_cv_processing import read_pdf, clean_text, count_words_in_pdf
 
-import pytest
-
-
 def test_read_pdf(): 
     result = read_pdf("tests/dummy.pdf")
     assert result == "Work Experience: Software Developer at XYZ Corp! "
@@ -29,7 +26,6 @@ def test_count_words_in_pdf():
 
     result = count_words_in_pdf("tests/dummy.pdf")
     assert result == expected_counter
-
 
 def test_clean_text_with_empty_string():
     raw_text = ""
