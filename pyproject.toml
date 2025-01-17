@@ -11,6 +11,9 @@ python = ">=3.11"
 pypdf2 = ">=3.0.1"
 nltk = ">=3.9.1"
 
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
+
 [tool.semantic_release]
 version_toml = [
     "pyproject.toml:tool.poetry.version",
