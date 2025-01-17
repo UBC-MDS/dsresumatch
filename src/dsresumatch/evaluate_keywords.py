@@ -4,6 +4,7 @@ from pathlib import Path
 # load in baseline keywords
 def load_baseline_keywords():
     """Load baseline keywords from the JSON file"""
+    
     data_path = Path(__file__).parent / "data" / "baseline_keywords.json"
     with open(data_path, "r") as f:
         keywords_dict = json.load(f)
@@ -46,4 +47,36 @@ def evaluate_keywords(cleaned_text, keywords=None, use_only_supplied_keywords=Fa
     >>> evaluate_keywords("data analysis machine learning statistical modeling", use_only_supplied_keywords=False)
     ['teamwork', 'communication']
     """
+    # input validation: verify text and keywords are strings
+    if not isinstance(cleaned_text, str):
+        raise TypeError("cleaned_text must be a string")
     
+    if keywords is not None and not all(isinstance(k, str) for k in keywords):
+        raise TypeError("All keywords must be strings")
+    
+    # convert text to lowercase for case-insensitive matching
+    cleaned_text = cleaned_text.lower()
+    
+    # initialize the set of keywords to check
+    # this will avoid duplicates as well
+    keywords_to_check = set()
+    
+    # handle the supplied keywords
+    if keywords is not None:
+        keywords_to_check.update(k.lower() for k in keywords)
+    
+    # add baseline keywords if needed
+    if not use_only_supplied_keywords:
+        keywords_to_check.update(load_baseline_keywords())
+    
+    # if no keywords to check (edge case: use_only_supplied_keywords=True but no keywords provided)
+    if not keywords_to_check:
+        return []
+    
+    # lastly find missing keywords
+    missing_keywords = []
+    for keyword in keywords_to_check:
+        if keyword not in cleaned_text:
+            missing_keywords.append(keyword)
+    
+    return missing_keywords
