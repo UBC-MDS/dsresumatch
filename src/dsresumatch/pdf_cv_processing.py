@@ -1,8 +1,8 @@
-import PyPDF2
+import PyPDF2 # type: ignore
 import string
 from collections import Counter
-from nltk.corpus import stopwords
-import nltk
+from nltk.corpus import stopwords # type: ignore
+import nltk # type: ignore
 
 # Ensure NLTK stopwords are downloaded
 nltk.download('stopwords')
@@ -32,7 +32,7 @@ def read_pdf(file_path):
             reader = PyPDF2.PdfReader(pdf_file)
             for page in reader.pages:
                 text_content.append(page.extract_text())
-        return " ".join(text_content).replace("\n", "")
+        return "".join(text_content).replace("\n", "")
     except Exception as e:
         raise ValueError(f"Error reading the PDF file: {e}")
 
