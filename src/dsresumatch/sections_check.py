@@ -1,4 +1,5 @@
 import re
+import warnings 
 
 def missing_section(clean_text, add_benchmark_sections=None):
     """
@@ -38,6 +39,10 @@ def missing_section(clean_text, add_benchmark_sections=None):
     missing = missing_section(clean_text)
     # Output: ['Work Experience', 'Contact']
     """
+    # Chek if 'clean_text' is an empty string
+    if clean_text == "":
+        warnings.warn("The provided resume text is an empty string. Returning all benchmark sections as missing.", UserWarning)
+
     if add_benchmark_sections is not None and not (isinstance(add_benchmark_sections, list) or isinstance(add_benchmark_sections, str)):
         raise TypeError(f"Expected a string, list, or None for additional benchmark sections. add_benchmark_sections is a {type(add_benchmark_sections)}")
 

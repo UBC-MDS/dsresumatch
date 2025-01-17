@@ -14,7 +14,6 @@ from dsresumatch.sections_check import missing_section
         Contact: john.doe@example.com
         """, None, set()),
         ("Skills: Python Education: CS\nContact: john.doe@example.com", ["Projects"], {"Work Experience", "Projects"}),
-        ("", None, {"Skills", "Education", "Work Experience", "Contact"}),
         ("Skills: Python, Machine Learning\nEducation: B.Sc. in CS", [], {"Work Experience", "Contact"}),
         ("skills: Python\nEDUCATION: B.Sc. in CS", None, {"Work Experience", "Contact"}),
         ("Skills: Python\nEducation: CS\nContact: john.doe@example.com", None, {"Work Experience"}),
@@ -37,3 +36,8 @@ def test_missing_section_invalid_cases(clean_text, add_benchmark_sections, expec
     with pytest.raises(expected_exception):
         missing_section(clean_text, add_benchmark_sections)
 
+def test_missing_section_warning_empty_text():
+    clean_text = ""
+    expected_output = ["Skills", "Education", "Work Experience", "Contact"]
+    with pytest.warns(UserWarning, match="The provided resume text is an empty string. Returning all benchmark sections as missing."):
+        assert set(missing_section(clean_text)) == set(expected_output)
