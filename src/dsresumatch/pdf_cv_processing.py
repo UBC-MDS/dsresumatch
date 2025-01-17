@@ -32,7 +32,7 @@ def read_pdf(file_path):
             reader = PyPDF2.PdfReader(pdf_file)
             for page in reader.pages:
                 text_content.append(page.extract_text())
-        return "\n".join(text_content)
+        return " ".join(text_content).replace("\n", "")
     except Exception as e:
         raise ValueError(f"Error reading the PDF file: {e}")
 
