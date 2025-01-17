@@ -2,7 +2,7 @@
 
 ## Outline
 
-`dsresumatch` is a Python library designed to do the analysis, evaluation, and scoring of resumes in PDF format. With tools to extract, clean, and analyze text, it allows users to identify missing or extra sections, count word frequencies, evaluate keyword matches, and generate scores for resumes based on predefined criteria. This package is especially useful for recruiters, hiring managers, and job seekers aiming to optimize resumes for keyword-based Applicant Tracking Systems (ATS).
+`dsresumatch` is a Python library designed to do the analysis, evaluation, and scoring of resumes in PDF format. With tools to extract, clean, and analyze text, it allows users to identify missing, count word frequencies, evaluate keyword matches, and generate scores for resumes based on predefined criteria. This package is especially useful for recruiters, hiring managers, and job seekers aiming to optimize resumes for keyword-based Applicant Tracking Systems (ATS).
 
 ## **Features**
 
@@ -13,7 +13,6 @@
 
 - **Section Evaluation**
   - `missing_section(clean_text, add_benchmark_sections=None)`: Identifies sections missing from the resume compared to benchmark sections.
-  - `extra_section(resume_text, add_benchmark_sections=None)`: Detects extra sections not included in the benchmark list.
 
 - **Keyword Analysis**
   - `evaluate_keywords(cleaned_text, keywords=None, use_only_supplied_keywords=False)`: Matches keywords against the resume text and evaluates the coverage.
@@ -56,9 +55,8 @@ raw_text = read_pdf(file_path) # Read text from the PDF
 cleaned_text = clean_text(raw_text) # Clean and preprocess the text
 word_counts = count_words_in_pdf(file_path) # Count words in the PDF
 
-benchmark_sections = ["Work Experience", "Education", "Skills", "Projects", "Certifications"] # (Optional) give keywords 
+add_benchmark_sections = ["Work Experience", "Education", "Skills", "Projects", "Certifications"] # (Optional) give keywords 
 missing = missing_section(cleaned_text, benchmark_sections) # Identify missing or extra sections
-extra = extra_section(cleaned_text, benchmark_sections)
 
 keywords = ["Python", "Data Analysis", "Machine Learning"] # Evaluate keywords
 keyword_evaluation = evaluate_keywords(cleaned_text, keywords)
