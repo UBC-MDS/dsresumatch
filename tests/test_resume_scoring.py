@@ -1,4 +1,5 @@
 import pytest
+import re
 
 # Access package and import necessary packages
 from dsresumatch.resume_scoring import resume_score
@@ -71,12 +72,12 @@ def test_data():
     test["clean_text_blank"] = ""
     test["keywords_optimal"] = ["TensorFlow", "Altair", "ggplot", "R", "Python"]
     test["keywords_blank"] = []
-    test["benchmark_sections_optimal"] = ["volunteer Work", "References"]
-    test["benchmark_sections_blank"] = []
+    test["benchmark_sections_optimal"] = ["Contact", "Volunteer Work", "References"]
+    test["benchmark_sections_blank"] = ""
 
     test["clean_text_wrong_type"] = 55
     test["keywords_wrong_type"] = True
-    test["benchmark_sections_wrong_type"] = "Test"
+    test["benchmark_sections_wrong_type"] = 33
     test["use_only_supplied_keywords_wrong_type"] = 11.1
     test["feedback_wrong_type"] = []
 
@@ -86,63 +87,58 @@ def test_data():
 
 def test_resume_score_cleaned_text_only(test_data):
     """Testing cleaned_text is a string, no optional variables."""
-    expected_result = """
-    This resume attained a score of 50.00.
-    - Missing Keywords: aws, project management, teamwork, problem solving, numpy, communication, pandas, data analysis, statistics, docker, pytorch, leadership
-    - Missing Sections: Contact, Work Experience
-    """
+    expected_result = "This resume attained a score of 33.33.\n- Missing Keywords: docker, pytorch, teamwork, data analysis, statistics, communication, aws, pandas, problem solving, project management, leadership, numpy\n- Missing Sections: Contact, Work Experience"
     actual_result = resume_score(test_data["clean_text_optimal"])
-    assert actual_result == expected_result, "resume_score_test_cleaned_text_only failed."
+
+    # Check if strings have the same words, not necessarily in the same order.
+    expected_result = set(re.split(r',\s*|\s+', expected_result))
+    actual_result = set(re.split(r',\s*|\s+', actual_result))
+    assert expected_result == actual_result, "resume_score_test_cleaned_text_only failed."
 
 def test_resume_score_cleaned_text_feedback(test_data):
     """Testing cleaned_text is a string, with feedback = False"""
-    expected_result = """
-    This resume attained a score of 50.00.
-    """
+    expected_result = "This resume attained a score of 33.33."
     actual_result = resume_score(test_data["clean_text_optimal"], 
                                  feedback=False)
     assert actual_result == expected_result, "resume_score_test_cleaned_text_feedback failed."
 
 def test_resume_score_cleaned_text_keywords(test_data):
     """Testing cleaned_text is a string, with keywords provided."""
-    expected_result = """
-    his resume attained a score of 57.58.
-    Feedback:
-    - Missing Keywords: 'Big Data', 'Cloud Computing'
-    - Missing Sections: 'Certifications', 'Projects'
-    """
+    expected_result = "This resume attained a score of 44.83. \n - Missing Keywords: leadership, docker, communication, statistics, data analysis, pandas, project management, numpy, aws, pytorch, problem solving, teamwork \n - Missing Sections: Work Experience, Contact"
     actual_result = resume_score(test_data["clean_text_optimal"], 
                                  keywords=test_data["keywords_optimal"])
+    
+    # Check if strings have the same words, not necessarily in the same order.
+    expected_result = set(re.split(r',\s*|\s+', expected_result))
+    actual_result = set(re.split(r',\s*|\s+', actual_result))
     assert actual_result == expected_result, "resume_score_test_cleaned_text_keywords failed."
 
 def test_resume_score_cleaned_text_keywords_only(test_data):
     """Testing cleaned_text is a string, with keywords provided and use_only_supplied_keywords = True"""
-    expected_result = """
-    This resume attained a score of 84.62.
-    Feedback:
-    - Missing Keywords: 'Big Data'
-    """
+    expected_result = "This resume attained a score of 55.56. \n - Missing Keywords: None \n - Missing Sections: Work Experience, Contact"
     actual_result = resume_score(test_data["clean_text_optimal"], 
                                  keywords=test_data["keywords_optimal"], 
                                  use_only_supplied_keywords=True)
+    
+    # Check if strings have the same words, not necessarily in the same order.
+    expected_result = set(re.split(r',\s*|\s+', expected_result))
+    actual_result = set(re.split(r',\s*|\s+', actual_result))
     assert actual_result == expected_result, "resume_score_test_cleaned_text_keywords_only failed."
 
 def test_resume_score_cleaned_text_benchmark_sections(test_data):
     """Testing cleaned_text is a string, with benchmark_sections provided."""
-    expected_result = """
-    This resume attained a score of .
-    Feedback:
-    - Missing Keywords: 'Big Data'
-    """
+    expected_result = "This resume attained a score of 29.63. \n - Missing Keywords: leadership, docker, communication, statistics, data analysis, pandas, project management, numpy, aws, pytorch, problem solving, teamwork \n - Missing Sections: Contact, Volunteer Work, Work Experience, References"
     actual_result = resume_score(test_data["clean_text_optimal"], 
                                  add_benchmark_sections=test_data["benchmark_sections_optimal"])
+    
+    # Check if strings have the same words, not necessarily in the same order.
+    expected_result = set(re.split(r',\s*|\s+', expected_result))
+    actual_result = set(re.split(r',\s*|\s+', actual_result))
     assert actual_result == expected_result, "resume_score_test_cleaned_text_benchmark_sections failed."
 
 def test_resume_score_cleaned_text_all_arguments(test_data):
     """Testing cleaned_text is a string, with all arguments."""
-    expected_result = """
-    This resume attained a score of 81.3.
-    """
+    expected_result = "This resume attained a score of 41.67."
     actual_result = resume_score(test_data["clean_text_optimal"], 
                                  feedback=False, 
                                  keywords=test_data["keywords_optimal"], 
@@ -152,63 +148,56 @@ def test_resume_score_cleaned_text_all_arguments(test_data):
 
 def test_resume_score_clean_text_blank(test_data):
     """Testing cleaned_text is blank, feedback = False."""
-    expected_result = """
-    This resume attained a score of 0.
-    """
-    actual_result = resume_score(test_data["clean_text_blank"],
-                                feedback = False)
+    expected_result = "This resume attained a score of 0.00."
     
     with pytest.warns(UserWarning):
-        assert actual_result == expected_result, "test_resume_score_clean_text_blank failed."
+        actual_result = resume_score(test_data["clean_text_blank"],
+                                     feedback = False)
+        
+    assert actual_result == expected_result, "test_resume_score_clean_text_blank failed."
 
 def test_resume_score_keywords_blank(test_data):
     """Testing cleaned_text is given, keywords is blank, feedback = False."""
-    expected_result = """
-    This resume attained a score of _.
-    """
-    actual_result = resume_score(test_data["clean_text_optimal"],
-                                 keywords = test_data["keywords_blank"],
-                                 feedback = False)
+    expected_result = "This resume attained a score of 33.33."
     
     with pytest.warns(UserWarning):
-        assert actual_result == expected_result, "test_resume_score_keywords_blank failed."
+        actual_result = resume_score(test_data["clean_text_optimal"],
+                                keywords = test_data["keywords_blank"],
+                                feedback = False)
+    
+    assert actual_result == expected_result, "test_resume_score_keywords_blank failed."
 
 def test_resume_score_benchmark_blank(test_data):
     """Testing cleaned_text is given, add_benchmark_section is blank, feedback = False."""
-    expected_result = """
-    This resume attained a score of _.
-    """
-    actual_result = resume_score(test_data["clean_text_optimal"],
-                                 add_benchmark_sections=test_data["benchmark_sections_blank"],
-                                feedback = False)
-    
+    expected_result = "This resume attained a score of 33.33."
     with pytest.warns(UserWarning):
-        assert actual_result == expected_result, "test_resume_score_benchmark_blank failed."
+        actual_result = resume_score(test_data["clean_text_optimal"],
+                                add_benchmark_sections=test_data["benchmark_sections_blank"],
+                            feedback = False)
+        
+    assert actual_result == expected_result, "test_resume_score_benchmark_blank failed."
 
 def test_resume_score_keywords_only_blank(test_data):
     """Testing cleaned_text is given, keywords is blank, use_only_supplied_keywords=True, feedback = False."""
-    expected_result = """
-    This resume attained a score of _.
-    """
-    actual_result = resume_score(test_data["clean_text_optimal"],
-                                 keywords = test_data["keywords_blank"],
-                                 use_only_supplied_keywords=True,
-                                 feedback = False)
-    
+    expected_result = "This resume attained a score of 33.33."
+
     with pytest.warns(UserWarning):
-        assert actual_result == expected_result, "test_resume_score_keywords_only_blank failed."
+        actual_result = resume_score(test_data["clean_text_optimal"],
+                            keywords = test_data["keywords_blank"],
+                            use_only_supplied_keywords=True,
+                            feedback = False)
+    assert actual_result == expected_result, "test_resume_score_keywords_only_blank failed."
 
 def test_resume_score_keywords_only_no_keywords(test_data):
     """Testing cleaned_text is given, keywords is not given, use_only_supplied_keywords=True, feedback = False."""
-    expected_result = """
-    This resume attained a score of _.
-    """
-    actual_result = resume_score(test_data["clean_text_optimal"],
-                                 use_only_supplied_keywords=True,
-                                 feedback = False)
-    
+    expected_result = "This resume attained a score of 33.33."
+
     with pytest.warns(UserWarning):
-        assert actual_result == expected_result, "test_resume_score_keywords_only_no_keywords failed."
+        actual_result = resume_score(test_data["clean_text_optimal"],
+                                use_only_supplied_keywords=True,
+                                feedback = False)
+        
+    assert actual_result == expected_result, "test_resume_score_keywords_only_no_keywords failed."
 
 def test_resume_score_cleaned_text_wrong_type(test_data):
     """Testing cleaned_text is wrong data type."""
