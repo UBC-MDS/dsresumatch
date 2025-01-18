@@ -52,7 +52,11 @@ def test_no_keywords_with_only_supplied():
     """Test when no keywords provided but use_only_supplied_keywords is True"""
 
     text = "python data analysis machine learning"
-    result = evaluate_keywords(text, use_only_supplied_keywords=True)
+    
+    # Check that warning is raised
+    with pytest.warns(UserWarning, match="No keywords provided while use_only_supplied_keywords=True"):
+        result = evaluate_keywords(text, use_only_supplied_keywords=True)
+    
     assert result == []
 
 def test_empty_text():
@@ -115,3 +119,14 @@ def test_case_sensitivity():
 
     # only SQL should be in results as python and analysis are in text (case-insensitive)
     assert result == ["SQL"]
+
+def test_empty_keywords_with_only_supplied():
+    """Test when empty keywords list provided with use_only_supplied_keywords=True"""
+
+    text = "python data analysis machine learning"
+    
+    # Check that warning is raised
+    with pytest.warns(UserWarning, match="No keywords provided while use_only_supplied_keywords=True"):
+        result = evaluate_keywords(text, keywords=[], use_only_supplied_keywords=True)
+    
+    assert result == []

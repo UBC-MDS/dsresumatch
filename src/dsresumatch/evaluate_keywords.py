@@ -59,6 +59,10 @@ def evaluate_keywords(cleaned_text, keywords=None, use_only_supplied_keywords=Fa
     if not cleaned_text.strip():
         warnings.warn("The provided resume text is an empty string. Returning all baseline keywords as missing.", UserWarning)
     
+    # Warn if user wants to use only supplied keywords but provides none
+    if use_only_supplied_keywords and (keywords is None or len(keywords) == 0):
+        warnings.warn("No keywords provided while use_only_supplied_keywords=True. Returning empty list.", UserWarning)
+    
     # convert text to lowercase for case-insensitive matching
     cleaned_text = cleaned_text.lower()
     
