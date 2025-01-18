@@ -1,5 +1,5 @@
 import pytest
-from src.dsresumatch.evaluate_keywords import evaluate_keywords, load_baseline_keywords
+from dsresumatch.evaluate_keywords import evaluate_keywords, load_baseline_keywords
 
 # load baseline keywords once for all tests
 BASELINE_KEYWORDS = load_baseline_keywords()
