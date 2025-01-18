@@ -43,31 +43,42 @@ If you are proposing a feature:
 Ready to contribute? Here's how to set up `dsresumatch` for local development.
 
 1. Download a copy of `dsresumatch` locally.
-2. Install `dsresumatch` using `poetry`:
+2. Ensure Poetry is installed. If not, you can install it by following the instructions on the [Poetry website](https://python-poetry.org/docs/)
+3. Install `dsresumatch` using `poetry`:
 
-    ```console
-    $ poetry install
+    ```bash
+    poetry install
     ```
 
-3. Use `git` (or similar) to create a branch for local development and make your changes:
+4. Use `git` (or similar) to create a branch for local development and make your changes:
 
-    ```console
-    $ git checkout -b name-of-your-bugfix-or-feature
+    ```bash
+    git checkout -b name-of-your-bugfix-or-feature
     ```
 
-4. When you're done making changes, check that your changes conform to any code formatting requirements and pass any tests.
+5. When you're done making changes, check that your changes conform to any code formatting requirements and pass any tests.
 
-5. Commit your changes and open a pull request.
+6. Commit your changes and open a pull request.
 
+## Run tests
+
+1. Please note that we need to have dummy.pdf and empty.pdf files in the tests folder for tests to pass
+
+2. Run the following command for tests: 
+
+    ```bash
+    pytest tests/
+    ```
+    
 ## Branch Naming Conventions
 
 To keep the workflow clean and organized, please follow these branch naming conventions when contributing to this project:
 
-	•	docs\: Use this prefix for branches that involve documentation updates or changes.
+ • docs\: Use this prefix for branches that involve documentation updates or changes.
         Example: docs\update-readme
-	•	fix\: Use this prefix for branches that fix bugs or issues in the codebase.
+ • fix\: Use this prefix for branches that fix bugs or issues in the codebase.
         Example: fix\functionName
-	•	feature\: Use this prefix for branches that add new features, scripts, or major changes to the codebase.
+ • feature\: Use this prefix for branches that add new features, scripts, or major changes to the codebase.
         Example: feature\add-functionName
 
 ## Pull Request Guidelines
