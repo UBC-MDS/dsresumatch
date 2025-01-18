@@ -60,38 +60,16 @@ Ready to contribute? Here's how to set up `dsresumatch` for local development.
 
 6. Commit your changes and open a pull request.
 
-## Dependencies
+## Run tests
 
-This project requires the following Python libraries to function correctly:
+1. Please note that we need to have dummy.pdf and empty.pdf files in the tests folder for tests to pass
 
-1. **PyPDF2**: A library for reading and manipulating PDF files.
-   * Install using Poetry:
+2. Run the following command for tests: 
 
-     ```bash
-     poetry add PyPDF2
-     ```
-
-2. **nltk (Natural Language Toolkit)**: A comprehensive library for working with human language data (text).
-   * Install using Poetry:
-
-     ```bash
-     poetry add nltk
-     
-     ```
-
-   * Note: This project uses the `stopwords` corpus, so ensure the following resource is downloaded:
-
-     ```bash
-     poetry add nltk
-     ```
-
-3. **Counter (collections module)**: A specialized container for counting hashable objects.
-   * Install using Poetry:
-
-     ```bash
-     poetry add counter
-     ```
-
+    ```bash
+    pytest tests/
+    ```
+    
 ## Branch Naming Conventions
 
 To keep the workflow clean and organized, please follow these branch naming conventions when contributing to this project:
