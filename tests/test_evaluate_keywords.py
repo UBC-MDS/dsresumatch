@@ -59,8 +59,11 @@ def test_empty_text():
     """Test with empty text file"""
 
     text = ""
-    result = evaluate_keywords(text)
-
+    
+    # Check that warning is raised
+    with pytest.warns(UserWarning, match="The provided resume text is an empty string"):
+        result = evaluate_keywords(text)
+    
     # All baseline keywords should be returned as missing
     assert set(result) == set(BASELINE_KEYWORDS)
 

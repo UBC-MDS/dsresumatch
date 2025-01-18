@@ -1,4 +1,5 @@
 import json
+import warnings
 from pathlib import Path
 
 # load in baseline keywords
@@ -53,6 +54,10 @@ def evaluate_keywords(cleaned_text, keywords=None, use_only_supplied_keywords=Fa
     
     if keywords is not None and not all(isinstance(k, str) for k in keywords):
         raise TypeError("All keywords must be strings")
+    
+    # Check for empty text and warn user
+    if not cleaned_text.strip():
+        warnings.warn("The provided resume text is an empty string. Returning all baseline keywords as missing.", UserWarning)
     
     # convert text to lowercase for case-insensitive matching
     cleaned_text = cleaned_text.lower()
