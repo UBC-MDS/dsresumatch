@@ -43,22 +43,34 @@ If you are proposing a feature:
 Ready to contribute? Here's how to set up `dsresumatch` for local development.
 
 1. Download a copy of `dsresumatch` locally.
-2. Ensure Poetry is installed. If not, you can install it by following the instructions on the [Poetry website](https://python-poetry.org/docs/)
-3. Install `dsresumatch` using `poetry`:
+
+2. Initialize a new environment:
+    ```bash
+    conda create -n new_env python=3.11
+    ```
+
+    And activate it:
+    ```bash
+    conda activate new_env
+    ```
+
+3. Ensure Poetry is installed. If not, you can install it by following the instructions on the [Poetry website](https://python-poetry.org/docs/)
+
+4. Install `dsresumatch` using `poetry`:
 
     ```bash
     poetry install
     ```
 
-4. Use `git` (or similar) to create a branch for local development and make your changes:
+5. Use `git` (or similar) to create a branch for local development and make your changes:
 
     ```bash
     git checkout -b name-of-your-bugfix-or-feature
     ```
 
-5. When you're done making changes, check that your changes conform to any code formatting requirements and pass any tests.
+6. When you're done making changes, check that your changes conform to any code formatting requirements and pass any tests.
 
-6. Commit your changes and open a pull request.
+7. Commit your changes and open a pull request.
 
 ## Run tests
 
