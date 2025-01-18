@@ -1,5 +1,6 @@
 from dsresumatch.sections_check import missing_section
 from dsresumatch.evaluate_keywords import evaluate_keywords, load_baseline_keywords
+import warnings
 
 def resume_score(cleaned_text, keywords=None, use_only_supplied_keywords=False, add_benchmark_sections=[], feedback=True):
     """
@@ -61,6 +62,41 @@ def resume_score(cleaned_text, keywords=None, use_only_supplied_keywords=False, 
     # Data type check for feedback
     if not isinstance(feedback, bool):
         raise TypeError(f"Expected a boolean for feedback. feedback is a {type(feedback)}")
+
+    # Data type check for cleaned_text
+    if not isinstance(cleaned_text, str):
+        raise TypeError(f"Expected a string for cleaned_text. cleaned_text is a {type(cleaned_text)}")
+
+    # Data type check for keywords
+    if keywords is not None:
+        if not isinstance(keywords, list):
+            raise TypeError(f"Expected a list for keywords. keywords is a {type(keywords)}")
+    
+    # Data type check for use_only_supplied_keywords
+    if not isinstance(use_only_supplied_keywords, bool):
+        raise TypeError(f"Expected a boolean for use_only_supplied_keywords. use_only_supplied_keywords is a {type(use_only_supplied_keywords)}")
+    
+    # Data type check for add_benchmark_sections
+    if not isinstance(add_benchmark_sections, (str, list)):
+        raise TypeError(f"Expected a string or list for add_benchmark_sections. add_benchmark_sections is a {type(add_benchmark_sections)}")
+    
+    # Issue warning if cleaned_text is blank
+    if cleaned_text == "":
+         warnings.warn("The provided resume text is an empty string.", UserWarning)
+
+    # Issue warning if keywords is empty list
+    if keywords == []:
+         warnings.warn("The provided keywords list is empty.", UserWarning)
+
+    # Issue warning and revert use_only_supplied_keywords if False and keywords is empty list
+    if (keywords == [] or keywords is None) and use_only_supplied_keywords == True:
+         warnings.warn("The provided keywords list is empty. Using default keywords.", UserWarning)
+         use_only_supplied_keywords = False
+
+    # Issue warning if add_benchmark_section is empty string
+    if add_benchmark_sections == "":
+         warnings.warn("The provided added sections text is an empty string.", UserWarning)
+
     
     # Getting missing keywords
     missing_keywords = evaluate_keywords(cleaned_text=cleaned_text,
@@ -77,18 +113,22 @@ def resume_score(cleaned_text, keywords=None, use_only_supplied_keywords=False, 
     sections = {"Skills", "Education", "Work Experience", "Contact"}
     baseline_keywords = load_baseline_keywords()
 
+    # Getting lengths of missing sections and keywords and total sections and keywords
     sections_count = len(sections)
     additional_sections_count = len(add_benchmark_sections)
     baseline_keywords_count = len(baseline_keywords)
     missing_section_count = len(missing_sections)
     missing_keywords_count = len(missing_keywords)
-
-    for section in missing_sections:
-        if section in sections:
-            sections_count += built_in_section_weight
-
     total_sections = sections_count + additional_sections_count
 
+    # Adding weights for section names
+    for section in missing_sections:
+        if section in sections:
+            missing_section_count += built_in_section_weight
+        if missing_section_count > total_sections:
+            missing_section_count = total_sections
+
+    # Checking for only_supplied_keywords
     if use_only_supplied_keywords and keywords is not None:
         total_keywords = len(keywords)
     elif keywords is not None:
@@ -108,13 +148,10 @@ def resume_score(cleaned_text, keywords=None, use_only_supplied_keywords=False, 
     
     # If feedback is needed, construct the feedback string
     feedback_keywords = "- Missing Keywords: "
-    feedback_keywords += ', '.join(missing_keywords)
+    feedback_keywords += ', '.join(missing_keywords) if missing_keywords else "None"
     feedback_sections = "- Missing Sections: "
-    feedback_sections += ', '.join(missing_sections)
+    feedback_sections += ', '.join(missing_sections) if missing_sections else "None"
 
     # Concatenate all strings and return final string.
-    result_string = "\n".join([score_section, feedback_keywords, feedback_sections])
+    result_string = f"{score_section} \n {feedback_keywords} \n {feedback_sections}"
     return result_string
-
-
-
