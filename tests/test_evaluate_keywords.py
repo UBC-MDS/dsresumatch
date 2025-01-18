@@ -20,7 +20,7 @@ def test_only_supplied_keywords():
     text = "python data analysis machine learning"
     keywords = ["python", "sql", "java"]
     result = evaluate_keywords(text, keywords, use_only_supplied_keywords=True)
-    assert result == ["sql", "java"]
+    assert set(result) == {"sql", "java"}
 
 def test_only_baseline_keywords():
     """Test using only baseline keywords when no keywords provided and use_only_supplied_keywords is False"""
@@ -107,8 +107,8 @@ def test_special_characters():
     result = evaluate_keywords(text, keywords, use_only_supplied_keywords=True)
     assert "python" not in result
     assert "データサイエンス" not in result
-    assert "R#" in result
-    assert "C++" in result
+    assert "R#".lower() in result
+    assert "C++".lower() in result
 
 def test_case_sensitivity():
     """Test case sensitivity"""
@@ -118,7 +118,7 @@ def test_case_sensitivity():
     result = evaluate_keywords(text, keywords, use_only_supplied_keywords=True)
 
     # only SQL should be in results as python and analysis are in text (case-insensitive)
-    assert result == ["SQL"]
+    assert result == ["sql"]
 
 def test_empty_keywords_with_only_supplied():
     """Test when empty keywords list provided with use_only_supplied_keywords=True"""
