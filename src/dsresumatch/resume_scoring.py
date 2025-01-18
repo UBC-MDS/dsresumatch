@@ -1,5 +1,5 @@
-# from sections_check import missing_section, extra_section
-# from evaluate_keywords import evaluate_keywords
+from dsresumatch.sections_check import missing_section
+from dsresumatch.evaluate_keywords import evaluate_keywords, load_baseline_keywords
 
 def resume_score(cleaned_text, keywords=None, use_only_supplied_keywords=False, add_benchmark_sections=[], feedback=True):
     """
@@ -20,8 +20,10 @@ def resume_score(cleaned_text, keywords=None, use_only_supplied_keywords=False, 
     use_only_supplied_keywords : bool, optional
         A flag to determine whether to use only the supplied keywords or to combine them with a default 
         set of predefined keywords. Defaults to False.
-    add_benchmark_sections : list of str, optional
-        A list of additional section names (e.g., ["Skills", "Education", "Work Experience", "Contact"]).
+    add_benchmark_sections : list of str or str, optional
+        A list of additional section names (e.g., "Skills", "Education", "Work Experience", "Contact") or 
+        a single section name as a string. Defaults to None. If a single string is provided, it will be 
+        treated as a list with one element.
     feedback : bool, optional
         A flag to determine whether the summary should be included in the results (True), or just a line with
         the score should be given (False). The default is True.
@@ -55,3 +57,64 @@ def resume_score(cleaned_text, keywords=None, use_only_supplied_keywords=False, 
     - Missing Keywords: 'Big Data', 'Cloud Computing'
     - Missing Sections: 'Certifications', 'Projects'
     """
+
+    # Data type check for feedback
+    if not isinstance(feedback, bool):
+        raise TypeError(f"Expected a boolean for feedback. feedback is a {type(feedback)}")
+    
+    # Getting missing keywords
+    missing_keywords = evaluate_keywords(cleaned_text=cleaned_text,
+                                         keywords=keywords,
+                                         use_only_supplied_keywords=use_only_supplied_keywords)
+    
+    # Getting missing sections
+    missing_sections = missing_section(clean_text=cleaned_text,
+                                       add_benchmark_sections=add_benchmark_sections)
+    
+    # Evaluate score of resume. Weights for built in sections will be used in scoring.
+
+    built_in_section_weight = 2
+    sections = {"Skills", "Education", "Work Experience", "Contact"}
+    baseline_keywords = load_baseline_keywords()
+
+    sections_count = len(sections)
+    additional_sections_count = len(add_benchmark_sections)
+    baseline_keywords_count = len(baseline_keywords)
+    missing_section_count = len(missing_sections)
+    missing_keywords_count = len(missing_keywords)
+
+    for section in missing_sections:
+        if section in sections:
+            sections_count += built_in_section_weight
+
+    total_sections = sections_count + additional_sections_count
+
+    if use_only_supplied_keywords and keywords is not None:
+        total_keywords = len(keywords)
+    elif keywords is not None:
+        total_keywords = baseline_keywords_count + len(keywords)
+    else:
+        total_keywords = baseline_keywords_count
+
+    # Calculation of score
+    score = ((total_sections-missing_section_count) + (total_keywords-missing_keywords_count)) / (total_keywords + total_sections) * 100
+
+    # Creation of results string
+    score_section = f"This resume attained a score of {score:.2f}."
+
+    # If feedback is not needed, simply return the score only
+    if not feedback:
+        return score_section
+    
+    # If feedback is needed, construct the feedback string
+    feedback_keywords = "- Missing Keywords: "
+    feedback_keywords += ', '.join(missing_keywords)
+    feedback_sections = "- Missing Sections: "
+    feedback_sections += ', '.join(missing_sections)
+
+    # Concatenate all strings and return final string.
+    result_string = "\n".join([score_section, feedback_keywords, feedback_sections])
+    return result_string
+
+
+
