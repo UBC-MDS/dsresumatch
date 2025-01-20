@@ -1,6 +1,6 @@
 # dsresumatch
 
-![](https://raw.githubusercontent.com/UBC-MDS/dsresumatch/refs/heads/project_logo/docs/logo.png)
+![](https://raw.githubusercontent.com/UBC-MDS/dsresumatch/refs/heads/project_logo/docs/logo.png){ width=150px }
 
 ## Outline
 
