@@ -1,5 +1,7 @@
 # dsresumatch
 
+<img src="https://raw.githubusercontent.com/UBC-MDS/dsresumatch/refs/heads/project_logo/docs/logo.png" width="150">
+
 ## Outline
 
 `dsresumatch` is a Python library designed to do the analysis, evaluation, and scoring of resumes in PDF format. With tools to extract, clean, and analyze text, it allows users to identify missing, count word frequencies, evaluate keyword matches, and generate scores for resumes based on predefined criteria. This package is especially useful for recruiters, hiring managers, and job seekers aiming to optimize resumes for keyword-based Applicant Tracking Systems (ATS).
