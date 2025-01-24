@@ -5,7 +5,11 @@ import warnings
 def resume_score(cleaned_text, keywords=None, use_only_supplied_keywords=False, add_benchmark_sections=[], feedback=True):
     """
     This function uses the results of keyword and section analyses (from evaluate_keywords and sections_check) to give a 
-    summary and a score that indicates of the quality of the resume text compared to the predefined baseline.
+    summary and a score that indicates of the quality of the resume text compared to the predefined baseline. The score is
+    calculated using the formula:
+    ((Total No. of Sections - Missing No. of Sections) + (Total No. of Keywords - Missing No. of Section)) / 
+    (Total No. of Keywords + Total No. of Sections) * 100
+
 
     Users can provide their own keywords or combine them with a default set of predefined keywords.
     Users can also provide names of additional sections to be checked.
