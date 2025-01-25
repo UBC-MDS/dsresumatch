@@ -1,5 +1,7 @@
 # dsresumatch
 
+[![Documentation Status](https://readthedocs.org/projects/dsresumatch/badge/?version=latest)](https://dsresumatch.readthedocs.io/en/latest/?badge=latest) [![codecov](https://codecov.io/github/UBC-MDS/dsresumatch/graph/badge.svg?token=iE9YGm9RLm)](https://codecov.io/github/UBC-MDS/dsresumatch)
+
 <img src="https://raw.githubusercontent.com/UBC-MDS/dsresumatch/refs/heads/project_logo/docs/logo.png" width="150">
 
 ## Outline
