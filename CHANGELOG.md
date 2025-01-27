@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.1.1 (2025-01-27)
+
+### Bug Fixes
+
+- Feedback from Milestone 2. Added test for non-string for cleaned_text
+  ([`198ca07`](https://github.com/UBC-MDS/dsresumatch/commit/198ca0753c53d720cf53fa2e9792e21ecf14c7e5))
+
+
 ## v1.1.0 (2025-01-27)
 
 ### Features
