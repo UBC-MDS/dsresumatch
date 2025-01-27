@@ -130,3 +130,10 @@ def test_empty_keywords_with_only_supplied():
         result = evaluate_keywords(text, keywords=[], use_only_supplied_keywords=True)
     
     assert result == []
+
+def test_cleaned_text_not_string():
+    """Test for when a non-string datatype is given as cleaned_text"""
+
+    text = 10
+    with pytest.raises(TypeError):
+        evaluate_keywords(text)
