@@ -1,6 +1,23 @@
 # CHANGELOG
 
 
+## v1.1.3 (2025-01-31)
+
+### Bug Fixes
+
+- Feedback on add sections doc addressed by JQ
+  ([`011df6b`](https://github.com/UBC-MDS/dsresumatch/commit/011df6b1a41a09f9bcbf70b60e1b5397af97943a))
+
+- Feedback on edge cases addressed by JQ
+  ([`a5d33ab`](https://github.com/UBC-MDS/dsresumatch/commit/a5d33ab568e7621407b95e94f8253da340c3e1a5))
+
+- Feedback on sections_check API addresed by JQ
+  ([`32a98f3`](https://github.com/UBC-MDS/dsresumatch/commit/32a98f33720c64f2c09ab5d21488df0a031b355e))
+
+- Feedback on tutorial typos addresed by JQ
+  ([`5edf455`](https://github.com/UBC-MDS/dsresumatch/commit/5edf45524e5626479e9a05b946cf3f212260889c))
+
+
 ## v1.1.2 (2025-01-31)
 
 ### Bug Fixes
