@@ -1,6 +1,17 @@
 # CHANGELOG
 
 
+## v1.1.4 (2025-01-31)
+
+### Bug Fixes
+
+- Feedback on adding pypi badge addresed by JQ
+  ([`2d8b048`](https://github.com/UBC-MDS/dsresumatch/commit/2d8b048b9382e21567f777d51852f84f670fbc51))
+
+- Feedback on updating readme addressed by JQ
+  ([`414a294`](https://github.com/UBC-MDS/dsresumatch/commit/414a2947887db6d95b3a175915ff325f97782593))
+
+
 ## v1.1.3 (2025-01-31)
 
 ### Bug Fixes
