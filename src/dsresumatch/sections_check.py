@@ -5,7 +5,7 @@ def missing_section(clean_text, add_benchmark_sections=None):
     """
     Identifies the sections missing from the resume based on the benchmark sections.
 
-    Parameters:
+    Parameters
     ----------
     clean_text : str
         The text extracted from the resume.
@@ -15,29 +15,29 @@ def missing_section(clean_text, add_benchmark_sections=None):
         Defaults to None. If a single string is provided, it will be treated as 
         a list with one element.
 
-    Returns:
+    Returns
     -------
     list of str
         A list of section names from the benchmark that are not present in the resume.
 
-    Examples:
+    Examples
     --------
-    # Example 1: With additional benchmark sections as a list
-    clean_text = "Skills: Python, Machine Learning\nEducation: B.Sc. in CS"
-    add_benchmark_sections = ["Work Experience", "Contact"]
-    missing = missing_section(clean_text, add_benchmark_sections)
-    # Output: ['Work Experience', 'Contact']
+    Example 1: With additional benchmark sections as a list
+    >>> clean_text = "Skills: Python, Machine Learning\nEducation: B.Sc. in CS"
+    >>> add_benchmark_sections = ["Work Experience", "Contact"]
+    >>> missing = missing_section(clean_text, add_benchmark_sections)
+    Output: ['Work Experience', 'Contact']
 
-    # Example 2: With additional benchmark sections as a single string
-    clean_text = "Skills: Python, Machine Learning\nEducation: B.Sc. in CS"
-    add_benchmark_sections = "Projects"
-    missing = missing_section(clean_text, add_benchmark_sections)
-    # Output: ['Work Experience', 'Contact', 'Projects']
+    Example 2: With additional benchmark sections as a single string
+    >>> clean_text = "Skills: Python, Machine Learning\nEducation: B.Sc. in CS"
+    >>> add_benchmark_sections = "Projects"
+    >>> missing = missing_section(clean_text, add_benchmark_sections)
+    Output: ['Work Experience', 'Contact', 'Projects']
 
-    # Example 3: Without additioinal benchmark sections
-    clean_text = "Skills: Python, Machine Learning\nEducation: B.Sc. in CS"
-    missing = missing_section(clean_text)
-    # Output: ['Work Experience', 'Contact']
+    Example 3: Without additioinal benchmark sections
+    >>> clean_text = "Skills: Python, Machine Learning\nEducation: B.Sc. in CS"
+    >>> missing = missing_section(clean_text)
+    Output: ['Work Experience', 'Contact']
     """
     # Chek if 'clean_text' is an empty string
     if clean_text == "":
