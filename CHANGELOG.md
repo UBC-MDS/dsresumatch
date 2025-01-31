@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.1.2 (2025-01-31)
+
+### Bug Fixes
+
+- Feedback for missing_section tests documentation addressed by Jia Quan Lim
+  ([`ce83f11`](https://github.com/UBC-MDS/dsresumatch/commit/ce83f11a6e93819b70b5831dd4c9fe9729850a67))
+
+
 ## v1.1.1 (2025-01-27)
 
 ### Bug Fixes
