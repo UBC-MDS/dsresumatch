@@ -1,8 +1,9 @@
 # dsresumatch
 
-[![Documentation Status](https://readthedocs.org/projects/dsresumatch/badge/?version=latest)](https://dsresumatch.readthedocs.io/en/latest/?badge=latest) [![codecov](https://codecov.io/github/UBC-MDS/dsresumatch/graph/badge.svg?token=iE9YGm9RLm)](https://codecov.io/github/UBC-MDS/dsresumatch) 
+[![Documentation Status](https://readthedocs.org/projects/dsresumatch/badge/?version=latest)](https://dsresumatch.readthedocs.io/en/latest/?badge=latest) [![codecov](https://codecov.io/github/UBC-MDS/dsresumatch/graph/badge.svg?token=iE9YGm9RLm)](https://codecov.io/github/UBC-MDS/dsresumatch) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dsresumatch) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dsresumatch) ![PyPI - Version](https://img.shields.io/pypi/v/dsresumatch)
+
 
 
 <img src="https://raw.githubusercontent.com/UBC-MDS/dsresumatch/refs/heads/project_logo/docs/logo.png" width="150">
