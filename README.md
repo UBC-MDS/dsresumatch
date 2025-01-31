@@ -1,6 +1,10 @@
 # dsresumatch
 
-[![Documentation Status](https://readthedocs.org/projects/dsresumatch/badge/?version=latest)](https://dsresumatch.readthedocs.io/en/latest/?badge=latest) [![codecov](https://codecov.io/github/UBC-MDS/dsresumatch/graph/badge.svg?token=iE9YGm9RLm)](https://codecov.io/github/UBC-MDS/dsresumatch)
+[![Documentation Status](https://readthedocs.org/projects/dsresumatch/badge/?version=latest)](https://dsresumatch.readthedocs.io/en/latest/?badge=latest) [![codecov](https://codecov.io/github/UBC-MDS/dsresumatch/graph/badge.svg?token=iE9YGm9RLm)](https://codecov.io/github/UBC-MDS/dsresumatch) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dsresumatch) ![PyPI - Version](https://img.shields.io/pypi/v/dsresumatch)
+
+
 
 <img src="https://raw.githubusercontent.com/UBC-MDS/dsresumatch/refs/heads/project_logo/docs/logo.png" width="150">
 
@@ -41,8 +45,9 @@ $ pip install dsresumatch
 ```
 
 ## Usage
+The full documentation can be found [here](https://dsresumatch.readthedocs.io/en/latest/?badge=latest#).
 
-`dsresumatch` extract text from pdf, count words from pdf, :
+Here is an example of using `dsresumatch` to extract text from pdf, count words from pdf:
 
 ```python
 
@@ -86,7 +91,7 @@ Nelli Hovhannisyan, Ashita Diwan, Timothy Singh, Jia Quan Lim
 
 ## Contributing
 
-Interested in contributing? Check out the contributing guidelines. Please note that this project is released with a Code of Conduct. By contributing to this project, you agree to abide by its terms.
+Interested in contributing? Check out the contributing guidelines. You may find the guided instruction in [CONTRIBUTING.md](https://github.com/UBC-MDS/dsresumatch/blob/main/CONTRIBUTING.md) Please note that this project is released with a Code of Conduct. By contributing to this project, you agree to abide by its terms.
 
 ## License
 
