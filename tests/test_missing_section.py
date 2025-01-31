@@ -31,6 +31,8 @@ def test_missing_section_valid_cases(clean_text, add_benchmark_sections, expecte
     [
         (None, ["Skills", "Education"], TypeError),
         ("Skills: Python\nEducation: CS", 123, TypeError),
+        ("Skills: Python\nEducation: CS", True, TypeError),
+        ("Skills: Python\nEducation: CS", False, TypeError)
     ],
 )
 def test_missing_section_invalid_cases(clean_text, add_benchmark_sections, expected_exception):
