@@ -9,7 +9,7 @@ def load_baseline_keywords():
     This function reads a JSON file containing baseline keywords organized by categories.
     It flattens the categories into a single list of keywords, converting them to lowercase
     for uniformity. This list can be used for evaluating resumes against a standard set of
-    keywords relevant to data science.
+    keywords relevant to data science. 
 
     Returns
     -------
