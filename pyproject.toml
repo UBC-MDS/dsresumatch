@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dsresumatch"
-version = "1.1.4"
+version = "1.1.5"
 description = "Analyze resumes and job descriptions by extracting key sections and scoring them based on keyword relevance"
 authors = ["Nelli Hovhannisyan, Ashita Diwan, Timothy Singh,Jia Quan Lim"]
 license = "MIT"

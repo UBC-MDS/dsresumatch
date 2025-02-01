@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.1.5 (2025-02-01)
+
+### Bug Fixes
+
+- Fix docs formatting in readthedocs for missing_section
+  ([`251288f`](https://github.com/UBC-MDS/dsresumatch/commit/251288f81ed3ac27f5888711dbb860df1d402801))
+
+
 ## v1.1.4 (2025-01-31)
 
 ### Bug Fixes
