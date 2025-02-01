@@ -98,7 +98,7 @@ Nelli Hovhannisyan, Ashita Diwan, Timothy Singh, Jia Quan Lim
 
 As a developer, are you innterested in contributing? Check out the contributing guidelines.
 
- You may find the guided instructions in [CONTRIBUTING.md](https://github.com/UBC-MDS/dsresumatch/blob/main/CONTRIBUTING.md) Please note that this project is released with a Code of Conduct. By contributing to this project, you agree to abide by its terms.
+You may find the guided instructions in [CONTRIBUTING.md](https://github.com/UBC-MDS/dsresumatch/blob/main/CONTRIBUTING.md) Please note that this project is released with a Code of Conduct. By contributing to this project, you agree to abide by its terms.
 
 ## License
 

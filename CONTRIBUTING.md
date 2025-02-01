@@ -81,7 +81,9 @@ Ready to contribute? Here's how to set up `dsresumatch` for local development.
     ```bash
     pytest tests/
     ```
-    
+
+    Note that in the current version, a warning will appear regarding the project dependency `PyPDF2`. At this point in time, the warning can be safely ignored, since it relates to a dependency and not the main package. In later versions, `PyPDF2` should be replaced with `pypdf` to stop the warning. 
+
 ## Branch Naming Conventions
 
 To keep the workflow clean and organized, please follow these branch naming conventions when contributing to this project:
