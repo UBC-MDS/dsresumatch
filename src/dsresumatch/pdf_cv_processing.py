@@ -26,6 +26,11 @@ def read_pdf(file_path):
     >>> read_pdf("cv.pdf")
     'Work Experience\nSoftware Developer at XYZ Corp.\nEducation\nBachelor of Science in Computer Science\n'
     """
+    if not isinstance(file_path, str):
+        raise TypeError("file_path must be a string representing the file path")
+    if not file_path.lower().endswith(".pdf"):
+        raise ValueError("file_path must point to a PDF file")
+    
     text_content = []
     try:
         with open(file_path, 'rb') as pdf_file:
@@ -33,9 +38,11 @@ def read_pdf(file_path):
             for page in reader.pages:
                 text_content.append(page.extract_text())
         return "".join(text_content).replace("\n", "")
+    except FileNotFoundError as e:
+        raise FileNotFoundError(f"The file {file_path} does not exist.") from e
     except Exception as e:
         raise ValueError(f"Error reading the PDF file: {e}")
-
+    
 
 def clean_text(raw_text):
     """
@@ -57,6 +64,10 @@ def clean_text(raw_text):
     >>> clean_text("Work Experience: Software Developer at XYZ Corp!")
     'work experience software developer xyz corp'
     """
+
+    if not isinstance(raw_text, str):
+        raise TypeError("raw_text must be a string")
+    
     # Convert to lowercase
     raw_text = raw_text.lower()
     # Remove punctuation
@@ -92,6 +103,11 @@ def count_words_in_pdf(file_path):
     Counter({'work': 1, 'experience': 1, 'software': 1, 'developer': 1, 'at': 1, 'xyz': 1, 
     'corp': 1, 'education': 1, 'bachelor': 1, 'of': 1, 'science': 1, 'in': 1, 'computer': 1})
     """
+    if not isinstance(file_path, str):
+        raise TypeError("file_path must be a string representing the file path")
+    if not file_path.lower().endswith(".pdf"):
+        raise ValueError("file_path must point to a PDF file")
+    
     pdf_text = read_pdf(file_path)
     cleaned_text = clean_text(pdf_text)
     word_list = cleaned_text.split()
