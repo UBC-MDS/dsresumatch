@@ -101,6 +101,8 @@ def count_words_in_pdf(file_path):
     """
     if not isinstance(file_path, str):
         raise TypeError("file_path must be a string representing the file path")
+    if not file_path.lower().endswith(".pdf"):
+        raise ValueError("file_path must point to a PDF file")
     
     pdf_text = read_pdf(file_path)
     cleaned_text = clean_text(pdf_text)

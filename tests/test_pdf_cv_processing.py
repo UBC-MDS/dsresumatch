@@ -85,17 +85,29 @@ def test_count_words_in_pdf():
 def test_clean_text_with_empty_string():
     """Test case for clean_text with an empty string"""
     
-    try:
-        clean_text(None)  # type: ignore
-    except TypeError:
-        pass
-    else:
-        raise AssertionError("Expected TypeError")
+    for invalid_input in [None, [], {}]:
+        try:
+            clean_text(invalid_input)  # type: ignore
+        except TypeError:
+            pass
+        else:
+            raise AssertionError("Expected TypeError")
     
     raw_text = ""
     expected_result = ""
     result = clean_text(raw_text)
     assert result == expected_result
+
+def test_clean_text_with_non_string_input():
+    """Test case for clean_text with a list of strings and other non-string inputs"""
+    
+    for invalid_input in [["hello", "world"], 42, 3.14, True]:
+        try:
+            clean_text(invalid_input)  # type: ignore
+        except TypeError:
+            pass
+        else:
+            raise AssertionError("Expected TypeError")
 
 
 def test_count_words_in_pdf_with_empty_content():
