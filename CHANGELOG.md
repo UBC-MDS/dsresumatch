@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.1.7 (2025-02-01)
+
+### Bug Fixes
+
+- Address feedback to include pdf in direct repo by Ashita Diwan
+  ([`b7ab271`](https://github.com/UBC-MDS/dsresumatch/commit/b7ab271e9de98c82a0ec9a1cbc3fd6af7d511709))
+
+
 ## v1.1.6 (2025-02-01)
 
 ### Bug Fixes
