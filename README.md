@@ -53,7 +53,7 @@ Here is an example of using `dsresumatch` to extract text from pdf, count words 
 
 # Import required functions
 from dsresumatch.pdf_cv_processing import read_pdf, count_words_in_pdf, clean_text
-from dsresumatch.sections_check import missing_section, extra_section
+from dsresumatch.sections_check import missing_section
 from dsresumatch.evaluate_keywords import evaluate_keywords
 from dsresumatch.resume_scoring import resume_score
 #additonal imports would be determined later
@@ -64,8 +64,11 @@ raw_text = read_pdf(file_path) # Read text from the PDF
 cleaned_text = clean_text(raw_text) # Clean and preprocess the text
 word_counts = count_words_in_pdf(file_path) # Count words in the PDF
 
-add_benchmark_sections = ["Work Experience", "Education", "Skills", "Projects", "Certifications"] # (Optional) give keywords 
-missing = missing_section(cleaned_text, benchmark_sections) # Identify missing or extra sections
+# (Optional) give keywords 
+add_benchmark_sections = ["Work Experience", "Education", "Skills", "Projects", "Certifications"] 
+
+# Identify missing sections
+missing = missing_section(cleaned_text, benchmark_sections) 
 
 keywords = ["Python", "Data Analysis", "Machine Learning"] # Evaluate keywords
 keyword_evaluation = evaluate_keywords(cleaned_text, keywords)
@@ -79,11 +82,13 @@ resume_summary = resume_score(
 
 print("Word Counts:", word_counts)
 print("Missing Sections:", missing)
-print("Extra Sections:", extra)
 print("Keyword Evaluation:", keyword_evaluation)
 print("Resume Summary:", resume_summary)
 
 ```
+
+A vignette, outlining the full functionality of the package can be found [here](https://dsresumatch.readthedocs.io/en/latest/example.html).
+
 
 ## Contributors
 
@@ -91,7 +96,9 @@ Nelli Hovhannisyan, Ashita Diwan, Timothy Singh, Jia Quan Lim
 
 ## Contributing
 
-Interested in contributing? Check out the contributing guidelines. You may find the guided instruction in [CONTRIBUTING.md](https://github.com/UBC-MDS/dsresumatch/blob/main/CONTRIBUTING.md) Please note that this project is released with a Code of Conduct. By contributing to this project, you agree to abide by its terms.
+As a developer, are you innterested in contributing? Check out the contributing guidelines.
+
+You may find the guided instructions in [CONTRIBUTING.md](https://github.com/UBC-MDS/dsresumatch/blob/main/CONTRIBUTING.md) Please note that this project is released with a Code of Conduct. By contributing to this project, you agree to abide by its terms.
 
 ## License
 
