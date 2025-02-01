@@ -1,9 +1,46 @@
 from collections import Counter
 from dsresumatch.pdf_cv_processing import read_pdf, clean_text, count_words_in_pdf
 
-def test_read_pdf(): 
+def test_read_pdf():
+    """Test cases for read_pdf function"""
+    # Normal case
     result = read_pdf("tests/dummy.pdf")
     assert result == "Work Experience: Software Developer at XYZ Corp! "
+    
+# Non-string input cases
+    try:
+        read_pdf(123)
+    except TypeError:
+        pass
+    else:
+        raise AssertionError("Expected TypeError")
+    
+    try:
+        read_pdf(None)
+    except TypeError:
+        pass
+    else:
+        raise AssertionError("Expected TypeError")
+    
+    # Non-existent file case
+    try:
+        read_pdf("non_existent.pdf")
+    except FileNotFoundError:
+        pass
+    else:
+        raise AssertionError("Expected FileNotFoundError")
+    
+    # Empty PDF case
+    result = read_pdf("tests/empty.pdf")
+    assert result == " "
+    
+    # Incorrect file type case
+    try:
+        read_pdf("tests/dummy.txt")
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("Expected ValueError")
 
 def test_clean_text():
     raw_text = "Work Experience: Software Developer at XYZ Corp!"

@@ -28,6 +28,8 @@ def read_pdf(file_path):
     """
     if not isinstance(file_path, str):
         raise TypeError("file_path must be a string representing the file path")
+    if not file_path.lower().endswith(".pdf"):
+        raise ValueError("file_path must point to a PDF file")
     
     text_content = []
     try:
@@ -36,9 +38,11 @@ def read_pdf(file_path):
             for page in reader.pages:
                 text_content.append(page.extract_text())
         return "".join(text_content).replace("\n", "")
+    except FileNotFoundError as e:
+        raise FileNotFoundError(f"The file {file_path} does not exist.") from e
     except Exception as e:
         raise ValueError(f"Error reading the PDF file: {e}")
-
+    
 
 def clean_text(raw_text):
     """
