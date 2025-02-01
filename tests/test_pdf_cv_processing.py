@@ -46,6 +46,13 @@ def test_read_pdf():
 def test_clean_text():
     """Test cases for clean_text function"""
 
+    try:
+        clean_text(123)  # type: ignore
+    except TypeError:
+        pass
+    else:
+        raise AssertionError("Expected TypeError")
+
     raw_text = "Work Experience: Software Developer at XYZ Corp!"
     expected_result = "work experience software developer xyz corp"
     result = clean_text(raw_text)
@@ -54,7 +61,13 @@ def test_clean_text():
 
 def test_count_words_in_pdf():
     """Test cases for count_words_in_pdf function"""
-
+    
+    try:
+        count_words_in_pdf(123)  # type: ignore
+    except TypeError:
+        pass
+    else:
+        raise AssertionError("Expected TypeError")
     # Simulate the output of read_pdf and clean_text
     pdf_text = "Work Experience: Software Developer at XYZ Corp!"
     expected_counter = Counter({
@@ -71,7 +84,14 @@ def test_count_words_in_pdf():
 
 def test_clean_text_with_empty_string():
     """Test case for clean_text with an empty string"""
-
+    
+    try:
+        clean_text(None)  # type: ignore
+    except TypeError:
+        pass
+    else:
+        raise AssertionError("Expected TypeError")
+    
     raw_text = ""
     expected_result = ""
     result = clean_text(raw_text)
@@ -80,7 +100,13 @@ def test_clean_text_with_empty_string():
 
 def test_count_words_in_pdf_with_empty_content():
     """Test case for count_words_in_pdf with an empty PDF"""
-
+    try:
+        count_words_in_pdf(None)  # type: ignore
+    except TypeError:
+        pass
+    else:
+        raise AssertionError("Expected TypeError")
+    
     pdf_text = ""
     result = count_words_in_pdf("tests/empty.pdf")
     assert result == Counter()  # Empty Counter for empty content
