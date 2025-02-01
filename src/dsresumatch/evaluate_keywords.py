@@ -4,7 +4,25 @@ from pathlib import Path
 
 # load in baseline keywords
 def load_baseline_keywords():
-    """Load baseline keywords from the JSON file"""
+    """Load baseline keywords from the JSON file.
+
+    This function reads a JSON file containing baseline keywords organized by categories.
+    It flattens the categories into a single list of keywords, converting them to lowercase
+    for uniformity. This list can be used for evaluating resumes against a standard set of
+    keywords relevant to data science.
+
+    Returns
+    -------
+    list of str
+        A list of baseline keywords in lowercase, extracted from the JSON file. 
+
+    Raises
+    ------
+    FileNotFoundError
+        If the JSON file containing the baseline keywords cannot be found.
+    json.JSONDecodeError
+        If the JSON file is not properly formatted.
+    """
     
     data_path = Path(__file__).parent / "data" / "baseline_keywords.json"
     with open(data_path, "r") as f:
