@@ -42,7 +42,7 @@ If you are proposing a feature:
 
 Ready to contribute? Here's how to set up `dsresumatch` for local development.
 
-1. Download a copy of `dsresumatch` locally.
+1. Download a copy of `dsresumatch` locally. This can be done either by cloning the repository or downloading the a `.ZIP` of the files on the repository.
 
 2. Initialize a new environment:
     ```bash
@@ -56,7 +56,7 @@ Ready to contribute? Here's how to set up `dsresumatch` for local development.
 
 3. Ensure Poetry is installed. If not, you can install it by following the instructions on the [Poetry website](https://python-poetry.org/docs/)
 
-4. Install `dsresumatch` using `poetry`:
+4. Navigate to the folder that was downloaded in Step 1, and install `dsresumatch` using `poetry`:
 
     ```bash
     poetry install
