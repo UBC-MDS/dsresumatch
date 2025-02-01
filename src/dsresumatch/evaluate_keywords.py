@@ -14,7 +14,7 @@ def load_baseline_keywords():
     Returns
     -------
     list of str
-        A list of baseline keywords in lowercase, extracted from the JSON file.
+        A list of baseline keywords in lowercase, extracted from the JSON file. 
 
     Raises
     ------
