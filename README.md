@@ -53,7 +53,7 @@ Here is an example of using `dsresumatch` to extract text from pdf, count words 
 
 # Import required functions
 from dsresumatch.pdf_cv_processing import read_pdf, count_words_in_pdf, clean_text
-from dsresumatch.sections_check import missing_section, extra_section
+from dsresumatch.sections_check import missing_section
 from dsresumatch.evaluate_keywords import evaluate_keywords
 from dsresumatch.resume_scoring import resume_score
 #additonal imports would be determined later
@@ -64,8 +64,11 @@ raw_text = read_pdf(file_path) # Read text from the PDF
 cleaned_text = clean_text(raw_text) # Clean and preprocess the text
 word_counts = count_words_in_pdf(file_path) # Count words in the PDF
 
-add_benchmark_sections = ["Work Experience", "Education", "Skills", "Projects", "Certifications"] # (Optional) give keywords 
-missing = missing_section(cleaned_text, benchmark_sections) # Identify missing or extra sections
+# (Optional) give keywords 
+add_benchmark_sections = ["Work Experience", "Education", "Skills", "Projects", "Certifications"] 
+
+# Identify missing sections
+missing = missing_section(cleaned_text, benchmark_sections) 
 
 keywords = ["Python", "Data Analysis", "Machine Learning"] # Evaluate keywords
 keyword_evaluation = evaluate_keywords(cleaned_text, keywords)
@@ -79,7 +82,6 @@ resume_summary = resume_score(
 
 print("Word Counts:", word_counts)
 print("Missing Sections:", missing)
-print("Extra Sections:", extra)
 print("Keyword Evaluation:", keyword_evaluation)
 print("Resume Summary:", resume_summary)
 
