@@ -39,7 +39,8 @@ def read_pdf(file_path):
 
 def clean_text(raw_text):
     """
-    Convert raw_text to lowercase, remove punctuation, and filter out common English stop words to retain only meaningful words in the string.
+    Convert raw_text to lowercase, remove punctuation, and filter out common English stop words 
+    to retain only meaningful words in the string.
 
     Parameters
     ----------
@@ -71,7 +72,8 @@ def count_words_in_pdf(file_path):
     """
     Count the frequency of words in a PDF file.
 
-    This function converts all words to lowercase, removing punctuation, and excluding common English stop words to ensure meaningful word counts. 
+    This function converts all words to lowercase, removing punctuation, and excluding common English 
+    stop words to ensure meaningful word counts. 
 
     Parameters
     ----------
@@ -81,12 +83,14 @@ def count_words_in_pdf(file_path):
     Returns
     -------
     collections.Counter
-        Dictionary-like object with the frequency of each remaining word where keys are words and values are counts.
+        Dictionary-like object with the frequency of each remaining word where keys are words and 
+        values are counts.
 
     Examples
     --------
     >>> count_words_in_pdf("cv.pdf")
-    Counter({'work': 1, 'experience': 1, 'software': 1, 'developer': 1, 'at': 1, 'xyz': 1, 'corp': 1, 'education': 1, 'bachelor': 1, 'of': 1, 'science': 1, 'in': 1, 'computer': 1})
+    Counter({'work': 1, 'experience': 1, 'software': 1, 'developer': 1, 'at': 1, 'xyz': 1, 
+    'corp': 1, 'education': 1, 'bachelor': 1, 'of': 1, 'science': 1, 'in': 1, 'computer': 1})
     """
     pdf_text = read_pdf(file_path)
     cleaned_text = clean_text(pdf_text)
