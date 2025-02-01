@@ -87,6 +87,9 @@ print("Resume Summary:", resume_summary)
 
 ```
 
+A vignette, outlining the full functionality of the package can be found [here](https://dsresumatch.readthedocs.io/en/latest/example.html).
+
+
 ## Contributors
 
 Nelli Hovhannisyan, Ashita Diwan, Timothy Singh, Jia Quan Lim
