@@ -1,6 +1,9 @@
 from collections import Counter
 from dsresumatch.pdf_cv_processing import read_pdf, clean_text, count_words_in_pdf
 
+with open("tests/corrupt.pdf", "wb") as f:
+    f.write(b"%PDF-1.4\n%Invalid content")
+
 def test_read_pdf():
     """Test cases for read_pdf function"""
     
@@ -43,6 +46,15 @@ def test_read_pdf():
     else:
         raise AssertionError("Expected ValueError")
 
+def test_read_pdf_with_invalid_pdf():
+    """Test case for read_pdf when an invalid PDF file is provided"""
+    try:
+        read_pdf("tests/corrupt.pdf")
+    except ValueError as e:
+        assert "Error reading the PDF file" in str(e)
+    else:
+        raise AssertionError("Expected ValueError")
+
 def test_clean_text():
     """Test cases for clean_text function"""
 
@@ -68,6 +80,14 @@ def test_count_words_in_pdf():
         pass
     else:
         raise AssertionError("Expected TypeError")
+    
+    try:
+        count_words_in_pdf("tests/dummy.txt")
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("Expected ValueError")
+    
     # Simulate the output of read_pdf and clean_text
     pdf_text = "Work Experience: Software Developer at XYZ Corp!"
     expected_counter = Counter({
