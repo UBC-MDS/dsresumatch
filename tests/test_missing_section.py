@@ -21,6 +21,7 @@ from dsresumatch.sections_check import missing_section
     ],
 )
 def test_missing_section_valid_cases(clean_text, add_benchmark_sections, expected_output):
+    """Tests valid inputs with various combinations of resume text and benchmark sections."""
     assert set(missing_section(clean_text, add_benchmark_sections)) == expected_output
 
 
@@ -30,13 +31,17 @@ def test_missing_section_valid_cases(clean_text, add_benchmark_sections, expecte
     [
         (None, ["Skills", "Education"], TypeError),
         ("Skills: Python\nEducation: CS", 123, TypeError),
+        ("Skills: Python\nEducation: CS", True, TypeError),
+        ("Skills: Python\nEducation: CS", False, TypeError)
     ],
 )
 def test_missing_section_invalid_cases(clean_text, add_benchmark_sections, expected_exception):
+    """Tests invalid inputs where TypeError is expected."""
     with pytest.raises(expected_exception):
         missing_section(clean_text, add_benchmark_sections)
 
 def test_missing_section_warning_empty_text():
+    """Tests warning behavior when an empty string is passed as the resume text."""
     clean_text = ""
     expected_output = ["Skills", "Education", "Work Experience", "Contact"]
     with pytest.warns(UserWarning, match="The provided resume text is an empty string. Returning all benchmark sections as missing."):
