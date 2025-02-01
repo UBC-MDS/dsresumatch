@@ -23,18 +23,21 @@ def missing_section(clean_text, add_benchmark_sections=None):
     Examples
     --------
     Example 1: With additional benchmark sections as a list
+
     >>> clean_text = "Skills: Python, Machine Learning\nEducation: B.Sc. in CS"
     >>> add_benchmark_sections = ["Work Experience", "Contact"]
     >>> missing = missing_section(clean_text, add_benchmark_sections)
     Output: ['Work Experience', 'Contact']
 
     Example 2: With additional benchmark sections as a single string
+
     >>> clean_text = "Skills: Python, Machine Learning\nEducation: B.Sc. in CS"
     >>> add_benchmark_sections = "Projects"
     >>> missing = missing_section(clean_text, add_benchmark_sections)
     Output: ['Work Experience', 'Contact', 'Projects']
 
     Example 3: Without additioinal benchmark sections
+    
     >>> clean_text = "Skills: Python, Machine Learning\nEducation: B.Sc. in CS"
     >>> missing = missing_section(clean_text)
     Output: ['Work Experience', 'Contact']
