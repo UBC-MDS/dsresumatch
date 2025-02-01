@@ -47,7 +47,9 @@ $ pip install dsresumatch
 ## Usage
 The full documentation can be found [here](https://dsresumatch.readthedocs.io/en/latest/?badge=latest#).
 
-Here is an example of using `dsresumatch` to extract text from pdf, count words from pdf:
+Before using `dsresumatch`, please ensure that your PDF file is placed in the root directory of the project repository.
+
+Here is an example of using `dsresumatch` to extract text from pdf, count words from pdf: 
 
 ```python
 
