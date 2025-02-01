@@ -1,6 +1,23 @@
 # CHANGELOG
 
 
+## v1.1.6 (2025-02-01)
+
+### Bug Fixes
+
+- Add Developer Setup Instructions addressed by Timothy Singh
+  ([`1faf73c`](https://github.com/UBC-MDS/dsresumatch/commit/1faf73cf34b0b55e81cb4eee46db5eca2d1ca634))
+
+- Add link to vignette in README.md addressed by Timothy Singh
+  ([`7aadcd4`](https://github.com/UBC-MDS/dsresumatch/commit/7aadcd41b350935468f00a89d23d74dc4c653f95))
+
+- Feedback for outdated function in README.md addressed by Timothy Singh
+  ([`5bf111f`](https://github.com/UBC-MDS/dsresumatch/commit/5bf111f34bca549579eba20636294364b56b9ffe))
+
+- Warning raised when running pytest addressed by Timothy Singh
+  ([`e91084f`](https://github.com/UBC-MDS/dsresumatch/commit/e91084f0b056ffbb6052f189b7fde22bfc27a7ca))
+
+
 ## v1.1.5 (2025-02-01)
 
 ### Bug Fixes
