@@ -3,11 +3,12 @@ from dsresumatch.pdf_cv_processing import read_pdf, clean_text, count_words_in_p
 
 def test_read_pdf():
     """Test cases for read_pdf function"""
+    
     # Normal case
     result = read_pdf("tests/dummy.pdf")
     assert result == "Work Experience: Software Developer at XYZ Corp! "
     
-# Non-string input cases
+    # Non-string input cases
     try:
         read_pdf(123)
     except TypeError:
@@ -43,6 +44,8 @@ def test_read_pdf():
         raise AssertionError("Expected ValueError")
 
 def test_clean_text():
+    """Test cases for clean_text function"""
+
     raw_text = "Work Experience: Software Developer at XYZ Corp!"
     expected_result = "work experience software developer xyz corp"
     result = clean_text(raw_text)
@@ -50,6 +53,8 @@ def test_clean_text():
 
 
 def test_count_words_in_pdf():
+    """Test cases for count_words_in_pdf function"""
+
     # Simulate the output of read_pdf and clean_text
     pdf_text = "Work Experience: Software Developer at XYZ Corp!"
     expected_counter = Counter({
@@ -65,6 +70,8 @@ def test_count_words_in_pdf():
     assert result == expected_counter
 
 def test_clean_text_with_empty_string():
+    """Test case for clean_text with an empty string"""
+
     raw_text = ""
     expected_result = ""
     result = clean_text(raw_text)
@@ -72,12 +79,16 @@ def test_clean_text_with_empty_string():
 
 
 def test_count_words_in_pdf_with_empty_content():
+    """Test case for count_words_in_pdf with an empty PDF"""
+
     pdf_text = ""
     result = count_words_in_pdf("tests/empty.pdf")
     assert result == Counter()  # Empty Counter for empty content
 
 
 def test_clean_text_removes_punctuation():
+    """Test case for clean_text ensuring punctuation is removed"""
+
     raw_text = "Hello, world! Python programming is fun."
     expected_result = "hello world python programming fun"
     result = clean_text(raw_text)
@@ -85,6 +96,8 @@ def test_clean_text_removes_punctuation():
 
 
 def test_clean_text_removes_stopwords():
+    """Test case for clean_text ensuring stopwords are removed"""
+
     raw_text = "This is a test for removing stopwords from text"
     expected_result = "test removing stopwords text"
     result = clean_text(raw_text)
